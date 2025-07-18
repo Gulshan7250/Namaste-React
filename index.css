@@ -20,9 +20,10 @@
 }
 
 .res-card {
-    margin: 5px;
+    margin: 2px;
     padding: 5px;
-    width: 200px;
+    width: 230px;
+    border-radius: 0 15px 0 15px;
 }
 
 .res-card:hover{

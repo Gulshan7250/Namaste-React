@@ -27404,6 +27404,7 @@ const Body = ()=>{
     _s();
     // State Variables - Super powerful variable
     const [listOfRestaurant, setListOfRestaurant] = (0, _react.useState)([]);
+    const [filteredRestaurant, setFilteredRestaurant] = (0, _react.useState)([]);
     // Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
     const [searchText, setSearchText] = (0, _react.useState)("");
     console.log("Body Rendered");
@@ -27422,6 +27423,7 @@ const Body = ()=>{
             uniqueRestaurants.push(res);
         }
         setListOfRestaurant(uniqueRestaurants);
+        setFilteredRestaurant(uniqueRestaurants);
     };
     // Conditional Rendering
     // if(listOfRestaurant.length === 0){
@@ -27432,7 +27434,7 @@ const Body = ()=>{
     //uses here ternary opearator
     return listOfRestaurant.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/component/Body.js",
-        lineNumber: 53,
+        lineNumber: 56,
         columnNumber: 42
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "body",
@@ -27452,7 +27454,7 @@ const Body = ()=>{
                                 }
                             }, void 0, false, {
                                 fileName: "src/component/Body.js",
-                                lineNumber: 58,
+                                lineNumber: 61,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27460,17 +27462,19 @@ const Body = ()=>{
                                     // Filter the restaurant card and update the UI
                                     // searchText
                                     console.log(searchText);
+                                    const filteredRestaurant = listOfRestaurant.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
+                                    setFilteredRestaurant(filteredRestaurant);
                                 },
                                 children: "Search"
                             }, void 0, false, {
                                 fileName: "src/component/Body.js",
-                                lineNumber: 59,
+                                lineNumber: 62,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/component/Body.js",
-                        lineNumber: 57,
+                        lineNumber: 60,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27483,40 +27487,40 @@ const Body = ()=>{
                         children: "Top Rated Restaurant"
                     }, void 0, false, {
                         fileName: "src/component/Body.js",
-                        lineNumber: 65,
+                        lineNumber: 73,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/component/Body.js",
-                lineNumber: 56,
+                lineNumber: 59,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "res-container",
-                children: listOfRestaurant?.map((restaurant)=>{
+                children: filteredRestaurant?.map((restaurant)=>{
                     if (!restaurant?.info?.id) return null; // skip if id is missing
                     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
                         resData: restaurant
                     }, restaurant.info.id, false, {
                         fileName: "src/component/Body.js",
-                        lineNumber: 83,
+                        lineNumber: 91,
                         columnNumber: 13
                     }, undefined);
                 })
             }, void 0, false, {
                 fileName: "src/component/Body.js",
-                lineNumber: 78,
+                lineNumber: 86,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/component/Body.js",
-        lineNumber: 55,
+        lineNumber: 58,
         columnNumber: 5
     }, undefined);
 };
-_s(Body, "GuFdPadp81reK4f4wc8lanW437w=");
+_s(Body, "n6Lg5Gg4Usc429ZhnwXCqi7fbxk=");
 _c = Body;
 exports.default = Body;
 var _c;
@@ -27540,7 +27544,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 const RestaurantCard = ({ resData })=>{
     const { info } = resData;
-    const { name, cuisines, cloudinaryImageId, avgRating, sla } = info;
+    const { name, cuisines, cloudinaryImageId, avgRating, sla, locality, availability } = info;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "res-card",
         style: {
@@ -27568,10 +27572,17 @@ const RestaurantCard = ({ resData })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: cuisines?.join(", ")
+                children: locality
             }, void 0, false, {
                 fileName: "src/component/RestaurantCard.js",
                 lineNumber: 17,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                children: cuisines?.join(", ")
+            }, void 0, false, {
+                fileName: "src/component/RestaurantCard.js",
+                lineNumber: 18,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
@@ -27581,7 +27592,14 @@ const RestaurantCard = ({ resData })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/component/RestaurantCard.js",
-                lineNumber: 18,
+                lineNumber: 19,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                children: availability?.opened ? "Open Now" : "Closed"
+            }, void 0, false, {
+                fileName: "src/component/RestaurantCard.js",
+                lineNumber: 20,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
@@ -27591,7 +27609,7 @@ const RestaurantCard = ({ resData })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/component/RestaurantCard.js",
-                lineNumber: 19,
+                lineNumber: 21,
                 columnNumber: 7
             }, undefined)
         ]

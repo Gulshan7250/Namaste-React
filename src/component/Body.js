@@ -5,8 +5,10 @@ import Shimmer from "./Shimmer";
 const Body = () => {
   // State Variables - Super powerful variable
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 // Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
   const [searchText, setSearchText] = useState("");
+  
   console.log("Body Rendered");
 
   useEffect(() => {
@@ -39,8 +41,9 @@ const Body = () => {
     }
 
     setListOfRestaurant(uniqueRestaurants);
+    setFilteredRestaurant(uniqueRestaurants);
   };
-
+ 
   // Conditional Rendering
   // if(listOfRestaurant.length === 0){
   //   return <Shimmer/>;
@@ -60,6 +63,11 @@ const Body = () => {
             // Filter the restaurant card and update the UI
             // searchText
             console.log(searchText);
+
+            const filteredRestaurant= listOfRestaurant.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase())
+          );    
+          
+          setFilteredRestaurant(filteredRestaurant);
           }}>Search</button>
         </div>
         <button className="filter-btn" 
@@ -76,7 +84,7 @@ const Body = () => {
          >Top Rated Restaurant</button>
       </div>
       <div className="res-container">
-        {listOfRestaurant?.map((restaurant) => {
+        {filteredRestaurant?.map((restaurant) => {
           if (!restaurant?.info?.id) return null; // skip if id is missing
 
           return (
