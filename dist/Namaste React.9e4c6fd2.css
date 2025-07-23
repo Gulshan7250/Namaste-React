@@ -71,4 +71,9 @@
   margin: 20px;
   display: flex;
 }
+
+.user-card {
+  border: 1px solid #000;
+  padding: 10px;
+}
 /*# sourceMappingURL=Namaste React.9e4c6fd2.css.map */

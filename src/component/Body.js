@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   // State Variables - Super powerful variable
@@ -88,7 +89,9 @@ const Body = () => {
           if (!restaurant?.info?.id) return null; // skip if id is missing
 
           return (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            <Link key={restaurant.info.id} to={"/restaurants/"+ restaurant.info.id}>
+              <RestaurantCard resData={restaurant} />
+            </Link>
           );
         })}
       </div>
