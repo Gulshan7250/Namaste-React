@@ -1,6 +1,14 @@
 const RestaurantCard = ({ resData }) => {
   const { info } = resData;
-  const { name, cuisines, cloudinaryImageId, avgRating, sla, locality ,availability} = info;
+  const {
+    name,
+    cuisines,
+    cloudinaryImageId,
+    avgRating,
+    sla,
+    locality,
+    availability,
+  } = info;
 
   return (
     <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
@@ -17,7 +25,7 @@ const RestaurantCard = ({ resData }) => {
       <h4>{locality}</h4>
       <h4>{cuisines?.join(", ")}</h4>
       <h4>{avgRating} stars</h4>
-      <h4>{availability?.opened? "Open Now":"Closed"}</h4>
+      <h4>{availability?.opened ? "Open Now" : "Closed"}</h4>
       <h4>{sla?.deliveryTime} mins</h4>
     </div>
   );

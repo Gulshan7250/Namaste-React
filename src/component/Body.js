@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // State Variables - Super powerful variable
@@ -53,6 +54,15 @@ const Body = () => {
   // Normal JS variable
   // let listOfRestaurant = [];
 
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Looks like you're offline !! Please check your internet connection;
+      </h1>
+    )
+
   //uses here ternary opearator
   return listOfRestaurant.length === 0 ? <Shimmer/> :
   (
@@ -71,18 +81,6 @@ const Body = () => {
           setFilteredRestaurant(filteredRestaurant);
           }}>Search</button>
         </div>
-        <button className="filter-btn" 
-         onClick={()=>
-          {
-           // filter logic here
-           const filteredlist = listOfRestaurant.filter(
-            (res)=> res.rating>4
-
-          );
-          setListOfRestaurant(filteredlist);
-          }
-        }
-         >Top Rated Restaurant</button>
       </div>
       <div className="res-container">
         {filteredRestaurant?.map((restaurant) => {
