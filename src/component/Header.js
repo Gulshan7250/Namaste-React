@@ -18,14 +18,12 @@ const Header = () => {
   }, [btnNameReact]);
 
   return (
-    <div className="header">
-      <div className="logo">
-        <Link to="/">
-          <img className="logo" src={LOGO_URL} />
-        </Link>
+    <div className="flex">
+      <div > 
+          <img src={LOGO_URL} />
       </div>
-      <div className="nav-items">
-        <ul>
+      <div flex flex-row px-5>
+        <ul >
           <li>
             Online Status: {onlineStatus ? "✅" : "🔴"}
           </li>

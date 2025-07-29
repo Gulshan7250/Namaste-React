@@ -1,3 +1,4 @@
+import "../src/index.css";
 import { createRoot } from "react-dom/client";
 import { lazy, Suspense } from "react";
 import Header from "./component/Header";
